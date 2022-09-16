@@ -110,9 +110,5 @@
         } else {
             Console.WriteLine("Not Palindrome");
         }
-
-        
-
     }
 }
-
