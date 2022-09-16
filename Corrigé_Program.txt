@@ -1,0 +1,115 @@
+﻿internal class Program
+{
+    private static void Main(string[] args)
+    {
+        int a = 7, b = 3;
+
+        (a, b) = ex1(a, b);
+        Console.WriteLine($"a) a = {a}, b = {b}\n");
+
+        (a, b) = ex2(a, b);
+        Console.WriteLine($"b) a = {a}, b = {b}\n");
+        
+        bool sameSign = ex3(a, b);
+        Console.WriteLine($"c) {a} and {b} have the same sign: {sameSign}\n");
+
+        Console.WriteLine("d) Nombre de photocopie : ");
+        int nbPhotocopie = int.Parse(Console.ReadLine());
+        double price = ex4(nbPhotocopie);
+        Console.WriteLine($"Prix total : {price}\n");
+
+        Console.WriteLine("e) Entrez un entier : ");
+        int N = int.Parse(Console.ReadLine());
+        int sum = ex5(N);
+        Console.WriteLine($"Somme des entiers de 1 à {N} : {sum}\n");
+
+        bool isPrime = ex6(N);
+        Console.WriteLine($"f) {N} est-il premier ? {isPrime}\n");
+
+        Console.WriteLine("g) Entrez un mot : ");
+        string word = Console.ReadLine();
+        int length;
+        bool isPalindrome;
+        string evenIndex;
+        (length, isPalindrome, evenIndex) = ex7(word);
+        Console.WriteLine($"Longueur du mot : {length}");
+        Console.WriteLine($"Le mot est-il un palindrome ? {isPalindrome}");
+        Console.WriteLine($"Caractères aux indices pairs : {evenIndex}\n");
+    }
+
+    private static (int, int) ex1(int a, int b) {
+        int temp = a;
+        a = b;
+        b = temp;
+        
+        return (a, b);
+    }
+
+    private static (int, int) ex2(int a, int b) {
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        
+        return (a, b);
+    }
+
+    private static bool ex3(int a, int b) {
+        return (a * b >= 0) ? true : false;
+    }
+
+    private static double ex4(int nbPhotocopie) {
+        double price = 0;
+
+        for (int i = 0; i < nbPhotocopie; i++) {
+            if (i < 10) {
+                price += 2;
+            } else if (i < 20) {
+                price += 1.50;
+            } else {
+                price += 1;
+            }
+        }
+
+        return price;
+    }
+
+    private static int ex5(int N) {
+        int sum = 0;
+
+        for (int i = 1; i <= N; i++) {
+            sum += i;
+        }
+
+        return sum;
+    }
+
+    private static bool ex6(int n) {
+        for (int i = 2; i < n / 2; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static (int, bool, string) ex7(string myString) {
+        int length = myString.Length;
+        bool isPalindrome = true;
+        string evenIndex = "";
+
+        for (int i = 0; i < length; i++) {
+            if (isPalindrome) {
+                if (myString[i] != myString[length - i - 1]) {
+                    isPalindrome = false;
+                }
+            }
+
+            if (i % 2 == 0) {
+                evenIndex += myString[i];
+            }
+        }
+
+        return (length, isPalindrome, evenIndex);
+    }
+}
