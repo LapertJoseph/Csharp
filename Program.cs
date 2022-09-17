@@ -68,6 +68,7 @@
 
         // int n = 5;
         // int res = n * (n+1) / 2;
+        // Console.WriteLine($"la somme est égale à {res}.");
 
 
         //exo 6
